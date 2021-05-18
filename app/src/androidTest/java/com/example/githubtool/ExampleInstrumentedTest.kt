@@ -1,4 +1,4 @@
-package com.example.ourmr
+package com.example.githubtool
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

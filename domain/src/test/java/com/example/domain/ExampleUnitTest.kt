@@ -1,4 +1,4 @@
-package com.example.ourmr
+package com.example.domain
 
 import org.junit.Test
 

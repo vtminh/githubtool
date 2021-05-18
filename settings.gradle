@@ -1,2 +1,4 @@
+include ':domain'
+include ':framework'
 include ':app'
-rootProject.name = "OurMR"
+rootProject.name = "GithubTool"
