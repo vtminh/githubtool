@@ -9,9 +9,8 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.domain.user.User
 import com.example.githubtool.R
 import com.example.githubtool.base.BaseActivity
+import com.example.githubtool.databinding.ActivityUserInfoBinding
 import com.example.githubtool.ui.mrlist.FollowersActivity
-import kotlinx.android.synthetic.main.activity_user_info.*
-
 
 /**
  * @author tuanminh.vu
@@ -38,13 +37,14 @@ class UserInfoActivity : BaseActivity() {
         .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
 
     private val glide by lazy { Glide.with(this).setDefaultRequestOptions(requestOptions) }
-
+    private lateinit var binding: ActivityUserInfoBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_info)
+        binding = ActivityUserInfoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         (intent.getSerializableExtra(EXTRA_USER) as? User)?.let { user ->
             updateLayout(user)
-            btnViewFollowers.setOnClickListener {
+            binding.btnViewFollowers.setOnClickListener {
                 user.login?.let {
                     FollowersActivity.start(this, it)
                 }
@@ -54,7 +54,7 @@ class UserInfoActivity : BaseActivity() {
         }
     }
 
-    private fun updateLayout(user: User) {
+    private fun updateLayout(user: User) = with(binding) {
         glide.load(user.avatarUrl).into(ivAvatar)
         tvName.text = user.login
         tvFollowers.text = String.format("%s : %s", getString(R.string.str_followers), user.followers)

@@ -12,7 +12,6 @@ import com.example.githubtool.R
 import com.example.githubtool.base.RecyclerViewAdapterBase
 import com.example.githubtool.databinding.LayoutUserInfoItemBinding
 
-
 /**
  * @author tuanminh.vu.
  */
