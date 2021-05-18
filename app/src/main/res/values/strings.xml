@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Github Tool</string>
+    <string name="str_no_followers">No Followers</string>
+    <string name="str_something_went_wrong">Something went wrong</string>
+    <string name="str_no_internet">No Internet</string>
+    <string name="str_followers">Followers</string>
+    <string name="str_following">Following</string>
 </resources>
