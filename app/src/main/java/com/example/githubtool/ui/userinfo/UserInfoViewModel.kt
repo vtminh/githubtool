@@ -10,6 +10,7 @@ import javax.inject.Inject
  * @author tuanminh.vu
  */
 class UserInfoViewModel(context: Application) : BaseViewModel<User>(context) {
+
     @Inject
     lateinit var getUserInfoUseCase: GetUserInfoUseCase
 

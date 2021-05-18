@@ -5,4 +5,6 @@
     <string name="str_no_internet">No Internet</string>
     <string name="str_followers">Followers</string>
     <string name="str_following">Following</string>
+    <string name="str_no_user_name_input">Please input user name first.</string>
+    <string name="str_unavailable_user_name">User %s is not available</string>
 </resources>

@@ -7,11 +7,9 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.githubtool.R
 import com.example.githubtool.base.BaseActivity
 import com.example.githubtool.base.UIUtils.createDivider
-import kotlinx.android.synthetic.main.activity_mr_list.*
-
+import com.example.githubtool.databinding.ActivityFollowerListBinding
 
 /**
  * @author tuanminh.vu
@@ -35,9 +33,12 @@ class FollowersActivity : BaseActivity() {
     private lateinit var viewModel: FollowerViewModel
     private lateinit var adapter: FollowerAdapter
     private lateinit var userName: String
+    private lateinit var binding: ActivityFollowerListBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mr_list)
+        binding = ActivityFollowerListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         intent.getStringExtra(EXTRA_USER_NAME)?.let {
             userName = it
             initViews()
@@ -47,9 +48,9 @@ class FollowersActivity : BaseActivity() {
 
     }
 
-    private fun initViews() {
+    private fun initViews() = with(binding) {
         adapter = FollowerAdapter(applicationContext)
-        rvMergeRequest.layoutManager = LinearLayoutManager(this)
+        rvMergeRequest.layoutManager = LinearLayoutManager(this@FollowersActivity)
         rvMergeRequest.addItemDecoration(createDivider())
         rvMergeRequest.adapter = adapter
 
@@ -67,12 +68,12 @@ class FollowersActivity : BaseActivity() {
         getAppComponent().inject(viewModel)
 
         viewModel.loadingLiveData.observe(this, Observer {
-            if (it && !srlMergeRequest.isRefreshing) {
+            if (it && !binding.srlMergeRequest.isRefreshing) {
                 val transparent = !adapter.data.isNullOrEmpty()
                 toggleLoading(true, transparent)
             } else {
                 toggleLoading(false)
-                srlMergeRequest.isRefreshing = false
+                binding.srlMergeRequest.isRefreshing = false
             }
         })
 
@@ -91,6 +92,6 @@ class FollowersActivity : BaseActivity() {
     }
 
     private fun showEmptyPageIfNeeded() {
-        emptyLayout.isVisible = adapter.data.isEmpty()
+        binding.emptyLayout.isVisible = adapter.data.isEmpty()
     }
 }
